@@ -1,43 +1,22 @@
-apiVersion: apps/v1 
-
-kind: Deployment 
-
-metadata: 
-
-  name: frontend-deployment 
-
-spec: 
-
-  replicas: 1  # You can adjust the number of replicas as needed 
-
-  selector: 
-
-    matchLabels: 
-
-      app: frontend 
-
-  template: 
-
-    metadata: 
-
-      labels: 
-
-        app: frontend 
-
-    spec: 
-
-      containers: 
-
-        - name: frontend 
-
-           image: registry213r.azurecr.io/reactfrontend:reactfrontend-tag # Updated for Artifact Registry 
-
-          ports: 
-
-            - containerPort: 3000  # Define the port your frontend listens on 
-
-          env: 
-
-          - name: REACT_APP_API_URL 
-
-            value: "http://34.100.189.1:8080"
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+spec:
+  replicas: 1  # You can adjust the number of replicas as needed
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: frontend
+          image: registry213r.azurecr.io/reactfrontend:reactfrontend-tag  # Updated for ACR
+          ports:
+            - containerPort: 3000  # Port your frontend listens on
+          env:
+            - name: REACT_APP_API_URL
+              value: "http://34.100.189.1:8080"
