@@ -1,0 +1,26 @@
+apiVersion: apps/v1 
+kind: Deployment 
+metadata: 
+  name: backend-deployment 
+spec: 
+  replicas: 1 
+  selector: 
+    matchLabels: 
+      app: backend 
+  template: 
+    metadata: 
+      labels: 
+        app: backend 
+    spec: 
+      containers: 
+      - name: backend 
+        image: registry213r.azurecr.io/javabackend:javabackend-tag  
+        env: 
+        - name: DATABASE_URL 
+          value: "jdbc:mysql://mysqlserver143r.mysql.database.azure.com:3306/coworkspace" 
+        - name: MYSQL_DATABASE 
+          value: "admi" 
+        - name: MYSQL_ROOT_PASSWORD 
+          value: "admin@1234" 
+        ports: 
+          - containerPort: 8080 
